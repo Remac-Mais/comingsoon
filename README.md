@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="MedPlus" title="MedPlus" src=".github/brand_logo.webp" width="228.1px" />
+    <img alt="Remac Mais" title="Remac Mais" src=".github/brand_logo.webp" width="228.1px" />
 </h1>
 
 <p align="center">
@@ -7,11 +7,11 @@
     <img alt="Made by Lauriel Mesquita" src="https://img.shields.io/static/v1?label=made%20by&message=Lauriel%20Mesquita&color=blue&labelColor=000000">
   </a>
 
-  <img alt="Language" src="https://img.shields.io/github/languages/top/Medplus-Developers/medplus-website?color=blue&labelColor=000000">
+  <img alt="Language" src="https://img.shields.io/github/languages/top/Remac-Mais/comingsoon?color=blue&labelColor=000000">
   
   <img src="https://img.shields.io/static/v1?label=code%20style&message=standard&color=yellow&labelColor=000000" alt="Standard - JavaScript Style Guide">
   
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Medplus-Developers/medplus-website?color=blue&labelColor=000000">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Remac-Mais/comingsoon?color=blue&labelColor=000000">
   
   
   <a href="https://app.netlify.com/sites/flamboyant-hugle-fbacf8/deploys">
@@ -20,7 +20,7 @@
 </p>
 
 <h2 align="center">
-  Repositório do website da Remac Mais
+  Repositório da Remac Mais
 </h2>
 
 <br><br>

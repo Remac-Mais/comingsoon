@@ -1,0 +1,37 @@
+module.exports = {
+  title: 'Remac Mais',
+  logo: '',
+  url: 'https://remacmais.com',
+  favicon: '../common/static/favicon/favicon.png',
+  cover: '',
+  legalName: 'Remac Mais Distribuidora',
+  description:
+    'A Remac Mais é uma empresa especializada na distribuição de produtos médicos, hospitalares, odontológicos, laboratoriais e medicamentos.',
+  socialLinks: {
+    twitter: '',
+    github: '',
+    linkedin: '',
+    instagram: '',
+    youtube: '',
+    google: ''
+  },
+  googleAnalyticsID: 'G-HP01N4VNTN',
+  themeColor: '#000696',
+  backgroundColor: '#6496f6',
+  social: {
+    facebook: '',
+    twitter: ''
+  },
+  address: {
+    city: '',
+    region: '',
+    country: '',
+    zipCode: ''
+  },
+  contact: {
+    email: '',
+    phone: ''
+  },
+  foundingDate: '2021',
+  googleVerification: 'xxx'
+}
