@@ -105,7 +105,7 @@ export const MainContentSection = styled.div`
     margin-top: 40px;
   }
   @media (max-width: 480px) {
-    margin-top: 50px;
+    margin-top: 0;
   }
   .mainContainer {
     position: relative;
@@ -214,15 +214,15 @@ export const FooterSection = styled.div`
 export const NormalClockWrapper = styled.div`
   position: relative;
   margin-bottom: 70px;
-  margin-top: 20px;
+  margin-top: 0;
 
   @media (max-width: 1440px) {
     margin-bottom: 70px;
-    margin-top: 15px;
+    margin-top: 0;
   }
   @media (max-width: 600px) {
-    margin-bottom: 30px;
-    margin-top: 25px;
+    margin-bottom: 60px;
+    margin-top: 0;
     width: 100%;
   }
   .NormalClock {
@@ -298,7 +298,7 @@ export const NormalClockWrapper = styled.div`
         }
       }
       .digitLabel {
-        font-size: 14px;
+        font-size: 13px;
         font-family: 'Roboto';
         color: rgba(142, 199, 255, 0.502);
         text-transform: uppercase;
