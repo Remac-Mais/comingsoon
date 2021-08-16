@@ -1,12 +1,33 @@
-import styled from 'styled-components';
-import BannerBG from '../static/images/twenty/bg.png';
+import styled from 'styled-components'
+import BannerBG from '../static/images/twenty/bg.png'
+
+export const GradientDiv = styled.section`
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  opacity: 0.16;
+  left: -100px;
+  top: -100px;
+  background: radial-gradient(circle closest-side, #6d8cf3, #03103b);
+  @media (max-width: 1440px) {
+    width: 450px;
+    height: 450px;
+  }
+`
+
+export const ParticleWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 0;
+`
 
 export const MainWrapper = styled.div`
-  background-image: url(${BannerBG});
+  background: #03103b;
   display: flex;
   max-width: 100%;
   overflow: hidden;
-  background-color: #040014;
+  background-color: #03103b;
   background-position: center 120px;
   background-size: 600px;
   background-repeat: no-repeat;
@@ -37,7 +58,7 @@ export const MainWrapper = styled.div`
   @media (max-width: 480px) {
     background-position: center 140px;
   }
-`;
+`
 
 const MainContentWrapper = styled.section`
   position: relative;
@@ -45,19 +66,20 @@ const MainContentWrapper = styled.section`
   min-height: 100vh;
   overflow: hidden;
   flex-grow: 1;
-`;
+`
 
 export const LogoImageContainer = styled.div`
   text-align: center;
   position: relative;
   padding-top: 40px;
+  z-index: 2;
   @media (max-width: 1600px) {
     padding-top: 30px;
   }
   img {
     margin: 0;
   }
-`;
+`
 
 export const SidebarButton = styled.div`
   position: absolute;
@@ -70,7 +92,7 @@ export const SidebarButton = styled.div`
     right: 10px;
     top: calc(50% - 10px);
   }
-`;
+`
 
 export const MainContentSection = styled.div`
   display: flex;
@@ -86,11 +108,11 @@ export const MainContentSection = styled.div`
     margin-top: 50px;
   }
   .mainContainer {
-    z-index: 99;
     position: relative;
+    z-index: 999 !important;
   }
   h2 {
-    font-size: 46px;
+    font-size: 44px;
     font-family: 'Anton', sans-serif;
     color: #fff;
     line-height: 1.35;
@@ -133,7 +155,7 @@ export const MainContentSection = styled.div`
       max-width: 100%;
     }
   }
-`;
+`
 
 export const FooterSection = styled.div`
   position: relative;
@@ -146,7 +168,7 @@ export const FooterSection = styled.div`
     justify-content: center;
     .social_profile_item {
       border-radius: 50%;
-      background-color: #191c29;
+      background-color: rgba(239, 245, 249, 0.102);
       width: 46px;
       height: 46px;
       display: flex;
@@ -187,43 +209,52 @@ export const FooterSection = styled.div`
       font-size: 12px;
     }
   }
-`;
+`
 
 export const NormalClockWrapper = styled.div`
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
+  margin-top: 20px;
+
   @media (max-width: 1440px) {
+    margin-bottom: 70px;
     margin-top: 15px;
-    margin-bottom: 60px;
   }
-  @media (max-width: 768px) {
-    margin-top: 0px;
-    margin-bottom: 40px;
-  }
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     margin-bottom: 30px;
+    margin-top: 25px;
+    width: 100%;
   }
   .NormalClock {
-    width: 600px;
     @media (max-width: 600px) {
       width: 100%;
     }
     .NormalUnitContainer {
-      background: transparent;
-      @media (max-width: 600px) {
+      background: #101c45;
+      width: 140px;
+      height: 100px;
+      z-index: 100;
+      @media (max-width: 1440px) {
         width: 80px;
-        height: auto;
+        height: 70px;
+      }
+      @media (max-width: 600px) {
+        width: 60px;
+        height: 60px;
       }
       .NormalupperCard {
+        align-items: center;
         span {
-          font-size: 60px;
-          font-family: 'Comfortaa';
-          color: #fff;
-          font-weight: bold;
-          line-height: 1;
+          font-size: 55px;
+          font-family: 'Roboto';
+          color: rgb(255, 255, 255);
+          font-weight: 300;
+          line-height: 0.8;
           text-align: center;
           letter-spacing: 0.025em;
-
+          @media (max-width: 1440px) {
+            font-size: 36px;
+          }
           @media (max-width: 600px) {
             font-size: 30px;
             line-height: 36px;
@@ -232,14 +263,16 @@ export const NormalClockWrapper = styled.div`
       }
       .NormallowerCard {
         span {
-          font-size: 60px;
-          font-family: 'Comfortaa';
-          color: #fff;
-          font-weight: bold;
-          line-height: 1;
+          font-size: 55px;
+          font-family: 'Roboto';
+          color: rgb(255, 255, 255);
+          font-weight: 300;
+          line-height: 0.8;
           text-align: center;
           letter-spacing: 0.025em;
-
+          @media (max-width: 1440px) {
+            font-size: 36px;
+          }
           @media (max-width: 600px) {
             font-size: 30px;
             line-height: 36px;
@@ -248,14 +281,16 @@ export const NormalClockWrapper = styled.div`
       }
       .NormalCard {
         span {
-          font-size: 60px;
-          font-family: 'Comfortaa';
-          color: #fff;
-          font-weight: bold;
-          line-height: 1;
+          font-size: 55px;
+          font-family: 'Roboto';
+          color: rgb(255, 255, 255);
+          font-weight: 300;
+          line-height: 0.8;
           text-align: center;
           letter-spacing: 0.025em;
-
+          @media (max-width: 1440px) {
+            font-size: 36px;
+          }
           @media (max-width: 600px) {
             font-size: 30px;
             line-height: 36px;
@@ -265,23 +300,43 @@ export const NormalClockWrapper = styled.div`
       .digitLabel {
         font-size: 14px;
         font-family: 'Roboto';
-        color: #fff;
+        color: rgba(142, 199, 255, 0.502);
         text-transform: uppercase;
         text-align: center;
         font-weight: 500;
         letter-spacing: 2px;
-
+        @media (max-width: 1440px) {
+          margin-top: 10px;
+          letter-spacing: 1px;
+        }
         @media (max-width: 600px) {
-          letter-spacing: 2px;
-          margin-top: 5px;
+          letter-spacing: 1px;
+          font-size: 10px;
         }
         @media (max-width: 420px) {
-          font-size: 12px;
+          font-size: 10px;
         }
       }
     }
+    .dividerColon {
+      font-size: 40px;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 15px;
+      margin-right: 15px;
+      @media (max-width: 1440px) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+      @media (max-width: 600px) {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
   }
-`;
+`
 
 export const SubscriptionWrapper = styled.div`
   margin-top: 60px;
@@ -300,7 +355,7 @@ export const SubscriptionWrapper = styled.div`
   button {
     background-color: red;
   }
-`;
+`
 
 export const SideBar = styled.div`
   width: 0;
@@ -337,7 +392,7 @@ export const SideBar = styled.div`
       height: 100%;
     }
   }
-`;
+`
 
 export const Overlay = styled.div`
   position: absolute;
@@ -352,7 +407,7 @@ export const Overlay = styled.div`
     transform: translateX(-100%);
     transition-delay: 0.4s;
   }
-`;
+`
 
 export const SidebarContent = styled.div`
   position: relative;
@@ -369,7 +424,7 @@ export const SidebarContent = styled.div`
   @media (max-width: 600px) {
     padding: 50px 65px 50px 35px;
   }
-`;
+`
 
 export const About = styled.div`
   text-align: center;
@@ -399,7 +454,7 @@ export const About = styled.div`
       font-size: 15px;
     }
   }
-`;
+`
 
 export const Contact = styled.div`
   margin-bottom: 120px;
@@ -452,7 +507,7 @@ export const Contact = styled.div`
       }
     }
   }
-`;
+`
 
 export const Info = styled.div`
   display: flex;
@@ -480,7 +535,7 @@ export const Info = styled.div`
       color: #f56289;
     }
   }
-`;
+`
 
 export const InfoItem = styled.div`
   flex: 0 0 33.333333%;
@@ -509,12 +564,12 @@ export const InfoItem = styled.div`
     line-height: 1.6;
     margin-bottom: 0;
   }
-`;
+`
 
 export const InfoIcon = styled.div`
   color: #bfbcc7;
   margin-bottom: 25px;
-`;
+`
 
 export const SidebarClose = styled.button`
   display: block;
@@ -534,6 +589,6 @@ export const SidebarClose = styled.button`
     top: 25px;
     right: 35px;
   }
-`;
+`
 
-export default MainContentWrapper;
+export default MainContentWrapper

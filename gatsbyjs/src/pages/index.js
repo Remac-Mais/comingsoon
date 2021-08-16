@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'gatsby'
+import Particles from 'react-particles-js'
 import Fade from 'react-reveal/Fade'
 import { ParallaxProvider } from 'react-scroll-parallax'
 import '@redq/reuse-modal/lib/index.css'
@@ -19,6 +20,8 @@ import ContactForm from '@deadline/components/MaterialContactFormTwo/MaterialCon
 import SubscriptionForm from '@deadline/components/ContactForm/ContactForm'
 import MainContentWrapper, {
   LogoImageContainer,
+  GradientDiv,
+  ParticleWrapper,
   SidebarButton,
   MainContentSection,
   SubscriptionWrapper,
@@ -85,11 +88,100 @@ const IndexPage = () => {
                   ''
                 )}
               </LogoImageContainer>
+              <ParticleWrapper>
+                <Particles
+                  params={{
+                    particles: {
+                      number: {
+                        value: 100,
+                        density: {
+                          enable: true,
+                          value_area: 600
+                        }
+                      },
+                      shape: {
+                        type: 'circle',
+                        stroke: {
+                          width: 0
+                        }
+                      },
+                      opacity: {
+                        value: 0.2,
+                        random: false,
+                        anim: {
+                          enable: false,
+                          speed: 1,
+                          opacity_min: 0.1,
+                          sync: false
+                        }
+                      },
+                      size: {
+                        value: 7,
+                        random: true,
+                        anim: {
+                          value: 4
+                        }
+                      },
+                      line_linked: {
+                        enable: true,
+                        distance: 100,
+                        opacity: 0.4,
+                        width: 1
+                      },
+                      move: {
+                        enable: true,
+                        speed: 3,
+                        direction: 'none',
+                        random: false,
+                        straight: false,
+                        out_mode: 'out',
+                        bounce: false,
+                        attract: {
+                          enable: false,
+                          rotateX: 600,
+                          rotateY: 1200
+                        }
+                      }
+                    },
+                    interactivity: {
+                      detect_on: 'canvas',
+                      events: {
+                        onhover: {
+                          enable: true,
+                          mode: 'grab'
+                        },
+                        onclick: {
+                          enable: true,
+                          mode: 'push'
+                        },
+                        resize: true
+                      },
+                      modes: {
+                        grab: {
+                          distance: 300,
+                          line_linked: {
+                            opacity: 0.4,
+                            enable: true
+                          }
+                        },
+                        push: {
+                          particles_nb: 8
+                        },
+                        remove: {
+                          particles_nb: 2
+                        }
+                      }
+                    },
+                    retina_detect: true
+                  }}
+                />
+              </ParticleWrapper>
+              <GradientDiv />
               <Container className='mainContainer'>
                 <MainContentSection>
                   <Fade>
                     <NormalClockWrapper>
-                      <NormalClock countdown={deadline} />
+                      <NormalClock countdown={deadline} divider='true' />
                     </NormalClockWrapper>
                   </Fade>
                   <h2>
