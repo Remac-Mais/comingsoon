@@ -16,8 +16,8 @@ module.exports = {
     google: ''
   },
   googleAnalyticsID: 'G-HP01N4VNTN',
-  themeColor: '#000696',
-  backgroundColor: '#6496f6',
+  themeColor: '#00499D',
+  backgroundColor: '#61B8E5',
   social: {
     facebook: '',
     twitter: ''
