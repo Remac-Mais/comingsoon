@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { Link, graphql, useStaticQuery } from 'gatsby'
-import BackgroundImage from 'gatsby-background-image'
-import { Modal, openModal } from '@redq/reuse-modal'
+import { Link } from 'gatsby'
+import Particles from 'react-particles-js'
+import Fade from 'react-reveal/Fade'
+import { ParallaxProvider } from 'react-scroll-parallax'
 import '@redq/reuse-modal/lib/index.css'
 import { Icon } from 'react-icons-kit'
-import { iosBell } from 'react-icons-kit/ionicons/iosBell'
-import { iosArrowThinRight } from 'react-icons-kit/ionicons/iosArrowThinRight'
 import { location } from 'react-icons-kit/icomoon/location'
 import { phone } from 'react-icons-kit/icomoon/phone'
 import { home } from 'react-icons-kit/entypo/home'
@@ -15,15 +14,19 @@ import LanguageProvider from '@deadline/common/LanguageSwitcher/context/language
 import LanguageSwitcher from '@deadline/common/LanguageSwitcher'
 import languageConfig from '@deadline/common/LanguageSwitcher/config'
 import NormalClock from '@deadline/components/NormalClock/NormalClock.js'
+import { androidMenu } from 'react-icons-kit/ionicons/androidMenu'
 import Button from '@deadline/components/Button'
 import ContactForm from '@deadline/components/MaterialContactFormTwo/MaterialContactForm'
-import SubscribeModal from '@deadline/components/SubscribeModal/SubscribeModal'
+import SubscriptionForm from '@deadline/components/ContactForm/ContactForm'
 import MainContentWrapper, {
-  MainContentSection,
-  NormalClockWrapper,
   LogoImageContainer,
-  ButtonWrapper,
+  GradientDiv,
+  ParticleWrapper,
+  SidebarButton,
+  MainContentSection,
+  SubscriptionWrapper,
   MainWrapper,
+  NormalClockWrapper,
   SideBar,
   Overlay,
   FooterSection,
@@ -33,19 +36,18 @@ import MainContentWrapper, {
   Info,
   InfoItem,
   InfoIcon,
-  SidebarClose,
-  PageWrapper
-} from '@deadline/common/ui/thirteen.style'
+  SidebarClose
+} from '@deadline/common/ui/twenty.style'
 import { SOCIAL_PROFILES } from '@deadline/common/data/social-share/six'
-import LogoImage from '@deadline/common/static/images/logoOne.png'
 // Language translation files
-import localPor from '@deadline/common/data/translation/claro/pt.json'
-import localEng from '@deadline/common/data/translation/claro/en.json'
+import localPor from '@deadline/common/data/translation/escuro/pt.json'
+import localEng from '@deadline/common/data/translation/escuro/en.json'
 import { Container, SocialShare, SEO } from '../components'
+import LogoImage from '@deadline/common/static/images/logoTwo.png'
 // Language translation Config
 const messages = {
-  en: localEng,
-  pt: localPor
+  pt: localPor,
+  en: localEng
 }
 
 const deadline = new Date(
@@ -53,18 +55,6 @@ const deadline = new Date(
 )
 
 const IndexPage = () => {
-  const Data = useStaticQuery(graphql`
-    query {
-      background: file(relativePath: { eq: "thirteen/background.png" }) {
-        childImageSharp {
-          fluid(quality: 100, maxWidth: 1920) {
-            ...GatsbyImageSharpFluid_tracedSVG
-          }
-        }
-      }
-    }
-  `)
-
   const [state, setState] = useState({
     toggle: false
   })
@@ -76,169 +66,208 @@ const IndexPage = () => {
     })
   }
 
-  const CloseComponent = () => <div />
-
-  const handleModal = () => {
-    openModal({
-      config: {
-        className: 'newsletter-modal',
-        disableDragging: false,
-        enableResizing: {
-          bottom: true,
-          bottomLeft: true,
-          bottomRight: true,
-          left: true,
-          right: true,
-          top: true,
-          topLeft: true,
-          topRight: true
-        },
-        width: 975,
-        height: 600,
-        animationFrom: { transform: 'scale(0.7)' }, // react-spring <Spring from={}> props value
-        animationTo: { transform: 'scale(1)' }, //  react-spring <Spring to={}> props value
-        transition: {
-          mass: 1,
-          tension: 130,
-          friction: 26
-        } // react-spring config props
-      },
-      withRnd: false,
-      overlayClassName: 'modal_overlay',
-      closeOnClickOutside: true,
-      component: SubscribeModal,
-      closeComponent: CloseComponent
-    })
-  }
-
   return (
-    <LanguageProvider messages={messages}>
-      <>
-        <SEO title='title' />
-        <Modal />
-        <PageWrapper>
-          <BackgroundImage
-            fluid={Data.background.childImageSharp.fluid}
-            backgroundColor='#e6e8ee'
-            Tag='div'
-            className='background-img'
-            style={{
-              backgroundSize: 'contain',
-              backgroundPosition: 'center bottom',
-              backgroundRepeat: 'no-repeat'
-            }}
-            fadeIn
-          >
-            <MainWrapper>
-              <MainContentWrapper>
-                <LogoImageContainer>
-                  <Link to='/'>
-                    <img src={LogoImage} alt='logo' />
-                  </Link>
-                </LogoImageContainer>
-                <Container className='mainContainer'>
-                  <MainContentSection>
-                    <h2>
-                      <FormattedMessage id='mainMessage' />
-                    </h2>
-                    <p>
-                      <FormattedMessage id='description' />
-                    </p>
+    <ParallaxProvider>
+      <LanguageProvider messages={messages}>
+        <React.Fragment>
+          <SEO title='title' />
+          <MainWrapper className={state.toggle === true ? 'sidebar-open' : ''}>
+            <MainContentWrapper>
+              <LogoImageContainer>
+                <Link to={'/'}>
+                  <img src={LogoImage} alt='logo' />
+                </Link>
+                {state.toggle === false ? (
+                  <SidebarButton>
+                    <Button
+                      icon={<Icon icon={androidMenu} size={25} />}
+                      onClick={toggleHandle}
+                    />
+                  </SidebarButton>
+                ) : (
+                  ''
+                )}
+              </LogoImageContainer>
+              <ParticleWrapper>
+                <Particles
+                  params={{
+                    particles: {
+                      number: {
+                        value: 100,
+                        density: {
+                          enable: true,
+                          value_area: 600
+                        }
+                      },
+                      shape: {
+                        type: 'circle',
+                        stroke: {
+                          width: 0
+                        }
+                      },
+                      opacity: {
+                        value: 0.2,
+                        random: false,
+                        anim: {
+                          enable: false,
+                          speed: 1,
+                          opacity_min: 0.1,
+                          sync: false
+                        }
+                      },
+                      size: {
+                        value: 7,
+                        random: true,
+                        anim: {
+                          value: 4
+                        }
+                      },
+                      line_linked: {
+                        enable: true,
+                        distance: 100,
+                        opacity: 0.4,
+                        width: 1
+                      },
+                      move: {
+                        enable: true,
+                        speed: 3,
+                        direction: 'none',
+                        random: false,
+                        straight: false,
+                        out_mode: 'out',
+                        bounce: false,
+                        attract: {
+                          enable: false,
+                          rotateX: 600,
+                          rotateY: 1200
+                        }
+                      }
+                    },
+                    interactivity: {
+                      detect_on: 'canvas',
+                      events: {
+                        onhover: {
+                          enable: true,
+                          mode: 'grab'
+                        },
+                        onclick: {
+                          enable: true,
+                          mode: 'push'
+                        },
+                        resize: true
+                      },
+                      modes: {
+                        grab: {
+                          distance: 300,
+                          line_linked: {
+                            opacity: 0.4,
+                            enable: true
+                          }
+                        },
+                        push: {
+                          particles_nb: 8
+                        },
+                        remove: {
+                          particles_nb: 2
+                        }
+                      }
+                    },
+                    retina_detect: true
+                  }}
+                />
+              </ParticleWrapper>
+              <GradientDiv />
+              <Container className='mainContainer'>
+                <MainContentSection>
+                  <Fade>
                     <NormalClockWrapper>
-                      <NormalClock divider countdown={deadline} />
+                      <NormalClock countdown={deadline} divider='true' />
                     </NormalClockWrapper>
-                    <ButtonWrapper>
-                      <Button
-                        type='submit'
-                        title='modalButtonText'
-                        icon={<Icon icon={iosBell} size={20} />}
-                        className='notify'
-                        onClick={handleModal}
-                      />
-                      <Button
-                        type='submit'
-                        title='sidebarButtonText'
-                        icon={<Icon icon={iosArrowThinRight} size={25} />}
-                        className='info'
-                        onClick={toggleHandle}
-                      />
-                    </ButtonWrapper>
-                  </MainContentSection>
-                </Container>
-                <FooterSection>
-                  <SocialShare items={SOCIAL_PROFILES} />
+                  </Fade>
+                  <h2>
+                    <FormattedMessage id='mainMessage' />
+                  </h2>
                   <p>
-                    <FormattedMessage id='copyrightText' />
+                    <FormattedMessage id='description' />
                   </p>
-                </FooterSection>
-              </MainContentWrapper>
-              <SideBar className={state.toggle === true ? 'expand' : ''}>
-                <SidebarContent>
-                  <SidebarClose type='submit' aria-label='close'>
-                    <Icon icon={x} size={33} onClick={toggleHandle} />
-                  </SidebarClose>
-                  <About>
-                    <h2>
-                      <FormattedMessage id='aboutTitle' />
-                    </h2>
+                  <SubscriptionWrapper>
+                    <SubscriptionForm />
+                  </SubscriptionWrapper>
+                </MainContentSection>
+              </Container>
+              <FooterSection>
+                <SocialShare items={SOCIAL_PROFILES} />
+                <p>
+                  <FormattedMessage id='copyrightText' />
+                </p>
+              </FooterSection>
+            </MainContentWrapper>
+            <SideBar className={state.toggle === true ? 'expand' : ''}>
+              <SidebarContent>
+                <SidebarClose type='submit' aria-label='close'>
+                  <Icon icon={x} size={33} onClick={toggleHandle} />
+                </SidebarClose>
+                <About>
+                  <h2>
+                    <FormattedMessage id='aboutTitle' />
+                  </h2>
+                  <p>
+                    <FormattedMessage id='aboutText' />
+                  </p>
+                </About>
+
+                <Contact>
+                  <h2>
+                    <FormattedMessage id='contactTitle' />
+                  </h2>
+                  <ContactForm />
+                </Contact>
+
+                <Info>
+                  <InfoItem>
+                    <InfoIcon>
+                      <Icon icon={location} size={33} />
+                    </InfoIcon>
+                    <h4>
+                      <FormattedMessage id='addressTitle' />
+                    </h4>
                     <p>
-                      <FormattedMessage id='aboutText' />
+                      <FormattedMessage id='addressDetails' />
                     </p>
-                  </About>
+                  </InfoItem>
 
-                  <Contact>
-                    <h2>
-                      <FormattedMessage id='contactTitle' />
-                    </h2>
-                    <ContactForm />
-                  </Contact>
+                  <InfoItem>
+                    <InfoIcon>
+                      <Icon icon={phone} size={32} />
+                    </InfoIcon>
+                    <h4>
+                      <FormattedMessage id='phoneTitle' />
+                    </h4>
+                    <p>
+                      <FormattedMessage id='phoneNumbers' />
+                    </p>
+                  </InfoItem>
 
-                  <Info>
-                    <InfoItem>
-                      <InfoIcon>
-                        <Icon icon={location} size={33} />
-                      </InfoIcon>
-                      <h4>
-                        <FormattedMessage id='addressTitle' />
-                      </h4>
-                      <p>
-                        <FormattedMessage id='addressDetails' />
-                      </p>
-                    </InfoItem>
-
-                    <InfoItem>
-                      <InfoIcon>
-                        <Icon icon={phone} size={32} />
-                      </InfoIcon>
-                      <h4>
-                        <FormattedMessage id='phoneTitle' />
-                      </h4>
-                      <p>
-                        <FormattedMessage id='phoneNumbers' />
-                      </p>
-                    </InfoItem>
-
-                    <InfoItem>
-                      <InfoIcon>
-                        <Icon icon={home} size={32} />
-                      </InfoIcon>
-                      <h4>
-                        <FormattedMessage id='websiteTitle' />
-                      </h4>
-                      <p>
-                        <FormattedMessage id='Websites' />
-                      </p>
-                    </InfoItem>
-                  </Info>
-                </SidebarContent>
-                <Overlay className={state.toggle === true ? 'expand' : ''} />
-              </SideBar>
-            </MainWrapper>
-          </BackgroundImage>
-        </PageWrapper>
-        <LanguageSwitcher languageConfig={languageConfig} />
-      </>
-    </LanguageProvider>
+                  <InfoItem>
+                    <InfoIcon>
+                      <Icon icon={home} size={32} />
+                    </InfoIcon>
+                    <h4>
+                      <FormattedMessage id='websiteTitle' />
+                    </h4>
+                    <p>
+                      <FormattedMessage id='Websites' />
+                    </p>
+                  </InfoItem>
+                </Info>
+              </SidebarContent>
+              <Overlay className={state.toggle === true ? 'expand' : ''} />
+            </SideBar>
+          </MainWrapper>
+          <LanguageSwitcher languageConfig={languageConfig} />
+        </React.Fragment>
+      </LanguageProvider>
+    </ParallaxProvider>
   )
 }
 
