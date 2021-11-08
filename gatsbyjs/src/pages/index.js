@@ -51,7 +51,7 @@ const messages = {
 }
 
 const deadline = new Date(
-  Date.parse(new Date('04 november 2021 00:00:00 GMT')) +
+  Date.parse(new Date('08 november 2021 00:00:00 GMT')) +
   7 * 24 * 60 * 60 * 1000
 )
 
